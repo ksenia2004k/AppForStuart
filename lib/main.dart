@@ -1,7 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:projects/ExpensesRoute.dart';
+import 'package:projects/ExpensesRoute.dart';
 import 'BudgetPlanner.dart';
 import 'ExpensesRoute.dart';
+import 'ExpensesRoute.dart';
+import 'ExpensesRoute.dart';
 import 'IncomeRoute.dart';
+import 'database.dart';
+
+allChartSampleDataExpenses(bool? single) {
+  return FutureBuilder<List<ChartSampleDataExpenses>>(
+      future: single == null ? DBProvider.db.getAllChartSampleDataExpenses()
+          : single == true ? DBProvider.db.getAllChartSampleDataExpenses() : DBProvider.db
+          .getNotSingleChartSampleDataExpenses(),
+      builder: (BuildContext context, AsyncSnapshot <List<ChartSampleDataExpenses>> snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            itemCount: snapshot.data?.length,
+            itemBuilder: (BuildContext context, int index) {
+              ChartSampleDataExpenses item = snapshot.data![index];
+              return Dismissible(
+                key: UniqueKey(),
+                background: Container(color: Colors.black12),
+                child: ListTile(
+                  title: Text(item.x),
+                  leading: Text(item.id.toString()),
+                ),
+              );
+            },
+          );
+        }
+        return const Center(child: CircularProgressIndicator(),);
+      }
+  );
+}
 
 List<ChartSampleDataExpenses> listOfDataExpenses =
 [
