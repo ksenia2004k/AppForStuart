@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget{
         '/ExpensesRoute': (BuildContext context) => const ExpensesRoute(),
         '/PlannerRoute': (BuildContext context) => const PlannerRoute(),
         '/InputRoute': (BuildContext context) => const InputRoute(),
+        '/InputRoute': (BuildContext context) => const InputRoute(),
       }
     );
   }
